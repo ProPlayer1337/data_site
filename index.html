@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Сайт ТИ4.0</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><span class="fa fa-bolt"></span><a href="#">Карточка резюме</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="current_page_item"><a href="#" accesskey="1" title="">Главная</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="header-featured">
+	<div id="banner-wrapper">
+		<div id="banner" class="container">
+			<h2>Чепиков Илья Андреевич</h2>
+			<p>Это страничка обо мне</p>>
+			<a href="#wrapper" class="button"> Подробнее </a>
+		</div>
+	</div>
+</div>
+<div id="wrapper">
+	<div id="featured-wrapper">
+		<div id="featured" class="extra2 margin-btm container">
+			<div class="main-title">
+				<h2>Краткое резюме</h2>
+				<span class="byline">Тут я расскажу о своих навыках и достижениях</span> </div>
+	
+			<div class="ebox1"> <span class="fa fa-pagelines"></span>
+				<div class="title">
+					<h2>Образование</h2>
+				</div>
+				<p>
+					Полное среднее образование<br>
+					Получаю высшее образование по специальности "Робототехника и мехатроника",<br>МГТУ СТАНКИН <br>
+					Фотограф
+				</p>
+			</div>
+			<div class="ebox2"> <span class="fa fa-anchor"></span>
+				<div class="title">
+					<h2>Навыки</h2>
+				</div>
+				<p> Языки программировния: Python, C++, HTML/CSS <br>
+					Программы: MS Office, Photoshop, Illustrator <br>
+				</p>
+			</div>
+		</div>
+		<div class="extra2 container">
+			<div class="ebox1"> <span class="fa fa-puzzle-piece"></span>
+				<div class="title">
+					<h2>Контакты</h2>
+				</div>
+				<p>	Номер телефона: +1 234 554 32-10 <br>
+					Почта: e-mail@gmail.com
+				</p>
+			</div>
+			<div class="ebox2"> <span class="fa fa-comments-o"></span>
+				<div class="title">
+					<h2>Сбор данных</h2>
+				</div>
+				<p> 
+					<div class="data">
+					<div class="data__title">Сбор данных:</div>
+					<ul id="demo">
+					</ul>
+				  </div>
+				  <script>
+					function sleep(ms) {
+					  return new Promise(resolve => setTimeout(resolve, ms));
+					}
+					function myFunction() {
+					  (async () => {
+						let response = await fetch('https://kav-api.kovalev.team/servodrive/lastActualData?servoDriveId=1');
+						let el = document.getElementById('demo')
+						el.innerHTML = ""
+						let text = await response.text(); // прочитать тело ответа как текст
+						for (const [key, value] of Object.entries(JSON.parse(text)[0])) {
+						  const newEl = document.createElement("li")
+						  newEl.appendChild(document.createTextNode(`${key}: ${value}`))
+						  el.appendChild(newEl)
+						  await sleep(100)
+						}
+					  })()
+					}
+				  </script>
+				</p>
+				<button class="button" onclick="myFunction()">Начать сбор данных</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
